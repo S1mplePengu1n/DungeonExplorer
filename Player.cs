@@ -6,55 +6,59 @@ namespace DungeonExplorer
 {
     public class Player
     {
-        private string name;
-        private string description;
-        private int inventory;
-        private int health;
+        private string _name;
+        private string _description;
+        private int _inventory;
+        private int _health;
         public string Name
         {
-            get { return name; }
+            get { return _name; }
             set
             {
-                name = string.IsNullOrEmpty(value) ? "NoName" : value;
+                _name = string.IsNullOrEmpty(value) ? "NoName" : value;
             }
         }
 public int Health
         {
-            health = 100;
-            get { return health; }
+            _health = 100;
+            get { return _health; }
             set
             {
-                health = (value >= 0 && value <= 100) ? value : 0;
+                _health = (value >= 0 && value <= 100) ? value : 0;
             }
         }
         public int Inventory
         {
-            get { return inventory; }
+            get { return _inventory; }
             set
             {
-                inventory = (value >= 0 && value <= 1) ? value : 0;
+                _inventory = (value >= 0 && value <= 1) ? value : 0;
             }
         }
 
-        public Player(string name, int health, int inventory) 
+        public Player(string _name, int _health, int _inventory) 
         {
-            Name = name;
-            Health = health;
-            Inventory = inventory;
+            Name = _name;
+            Health = _health;
+            Inventory = _inventory;
         }
+        
         public void PickUpItem(string item)
         {
-           if (Inventory == null)
+           if (Inventory =! null)
             {
-               
+                inventory.AddItem(item);
                 Console.WriteLine($"You picked up: {item}");
-
+                item = null;
             }
             else
             {
                 Console.WriteLine("Inventory is full! Can't carry anymore items.");
             }
         }
+       
+    
+
         public string InventoryContents()
         {
             return string.Join(", ", Inventory);

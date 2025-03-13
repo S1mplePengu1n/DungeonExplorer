@@ -7,14 +7,12 @@
         
         public void pickItem(string item)
         {
-           if (item =! null)
-            {
-               
-                Console.WriteLine($"You picked up: {item}");
-
-            }
+          items.Add(item);
+        Console.WriteLine($"{item} has been added to your inventory.");
            
         }
+    
+
 
         public Room(string description)
         {
