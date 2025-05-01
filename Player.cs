@@ -4,13 +4,15 @@ using System.Runtime.InteropServices;
 
 namespace DungeonExplorer
 {
-    public class Player
+    public class Player : Creature :IDamageable
     {
         private string _name;
         private string _description;
         private int _inventory;
         private int _health;
         public string Name
+        public Room CurrentRoom { get; set; }
+
         {
             get { return _name; }
             set
@@ -68,5 +70,34 @@ public int Health
             Console.WriteLine($"Player: {Name} | Health: {health} | Inventory: {inventory ?? "None"}");
             
         }
+        public void MoveToRoom(Room room)
+    {
+        CurrentRoom = room;
+        Console.WriteLine($"\n{this.Name} moved to {room.Name}.");
     }
+      public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health < 0) Health = 0;
+        Console.WriteLine($"{Name} takes {damage} damage. Health is now {Health}.");
+    }
+
+    public void Heal(int amount)
+    {
+        Health += amount;
+        Console.WriteLine($"{Name} heals for {amount}. Health is now {Health}.");
+    }
+     public void Attack(Monster monster)
+    {
+        Console.WriteLine($"{Name} attacks {monster.Name} for {AttackPower} damage.");
+        monster.TakeDamage(AttackPower);
+    }
+
+    public void MoveToRoom(Room room)
+    {
+        CurrentRoom = room;
+        Console.WriteLine($"\n{Name} moved to {room.Name}.");
+    }
+    }
+    
 }

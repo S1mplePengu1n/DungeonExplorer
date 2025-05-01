@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Media;
+using System.Linq;
 
 namespace DungeonExplorer
 {
@@ -42,4 +43,20 @@ namespace DungeonExplorer
             }
         }
     }
+    
+
+public void ShowStrongestMonster(List<Monster> monsters)
+{
+    var strongest = monsters.OrderByDescending(m => m.Health).FirstOrDefault();
+
+    if (strongest != null)
+    {
+        Console.WriteLine($"Strongest monster is: {strongest.Name} with {strongest.Health} HP.");
+    }
+    else
+    {
+        Console.WriteLine("No monsters found.");
+    }
+}
+
 }
